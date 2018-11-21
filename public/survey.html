@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Survey</h1>
+    <div class="container" style="background-color: #ce9f9f">
+        <h1 style='color:#7a0808'>Compatibility Survey</h1>
         <hr>
         <form class="form">
             <div class="form-group">
@@ -24,9 +24,9 @@
                 <input type="text" class="form-control" id="image" required>
             </div>
             <hr>
-            <h2>Select how much you agree with the following statements.</h2>
+            <h2 style="color: #7a0808">Select how much you agree with the following statements.</h2>
             <div class="form-group">
-                <label for="q1" class="lead">Your mind is always buzzing with unexplored ideas and plans.</label>
+                <label for="q1" class="lead">You enjoy outdoor activities like hiking, camping, or swimming</label>
                 <select id="q1" class="form-control" required>
                     <option value="" selected disabled>Please select</option>
                     <option value="1">1 (Strongly Disagree)</option>
@@ -37,3 +37,138 @@
                 </select>
             </div>
             <br />
+            <div class='form-group'>
+                <label for='q2' class='lead'>What is Your Preferred Tv Show </label>
+                <select id='q2' class='form-control' required>
+                    <option value='' selected disabled> Please Select</option>
+                    <option value='1'>A good 45 minute drama</option>
+                    <option value='2'>The hottest new HBO show</option>
+                    <option value='3'>A cartoon that can be enjoyed by grownups too</option>
+                    <option value='4'>A lighthearted sitcom</option> 
+                    <option value='5'>No TV for me thanks</option>
+                </select>
+            </div>
+            <br />
+            <div class='form-group'>
+                <label for='q3' class = 'lead'>Generally Speaking How Imortant do You Think Organization is</label>
+                <select id='q3' class='form-control' required>
+                    <option value='' selected disabled>Please Select</option>
+                    <option value='1'>1 (Strongly Disagree)</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5 (Strongly Agree)</option>
+                </select>
+            </div>
+            <div class='form-group'>
+                <label for ='q4' class='lead'>Its Friday Night What are You Doing?</label>
+                <select id='q4' class='form-control' required>
+                    <option value="" selected disabled>Please Select</option>
+                    <option value='1'>Staying in, recovering from the workweek</option>
+                    <option value='2'>Renting a movie, getting takeout</option>
+                    <option value='3'>Playing board games with friends</option>
+                    <option value='4'>Maybe going out with friends for a drink</option>
+                    <option value='5'>Going out, staying up late, sleeping in</option>
+                </select>
+            </div>
+            <br />
+            <div class='form-group'>
+                <label for = 'q5' class='lead'>Would You Describe Yourself as a Morning Person</label>
+                <select id='q4' class='form-control' required>
+                    <option value='' selected disabled>Please Seleect</option>
+                    <option value='1'>1 (Strongly Disagree</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5 (Strongly Agree)</option>
+                </select>
+            </div>
+            <br />
+            <div class='form-group'>
+                <label for='q6' class='lead'>What Kind of Pet Would You Have</label>
+                <select id='q6' class='form-control' required>
+                <option value= ='' selected disabled>Please Select</option>
+                <option value='1'>No Pets Please</option>
+                <option value='2'>Probably just a fish</option>
+                <option value='3'>A Bunny or a Mouse</option>
+                <option value='4'>Probably a Cat</option>
+                <option value='5'>A Big 'Ol Dog</option>
+                </select>
+            </div>
+            <br />
+            <div class='form-group'>
+                <label for ='q7' class='lead'>Would Consider Yourself Engaged in Current Events</label>
+                <select id='q7' class='form-control'required>
+                <option value='' selected disabled>Please Select</option>
+                <option value='1'>1 (Strongly Disagee)</option>
+                <option value='2'>2 </option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5 (Strongly Agree)</option>
+                </select>
+            </div>
+            <br />
+            <div class='form-group'>
+                <label for='q8' class='lead'>What Kind of Relationship are you Looking For?</label>
+                <select id='q8' class='form-control' required>
+                    <option value='' selected disabled>Please Select</option>
+                    <option value='1'>Hookups</option>
+                    <option value='2'>Friends With Benefits</option>
+                    <option value='3'>Casual Dating</option>
+                    <option value='4'>A Relationship</option>
+                    <option value='5'>Ready to Settle Down</option>
+                </select>
+            </div>
+            <br />
+            <div class='form-group'>
+                <label for='q9' class='lead'>Would You Ever Want a Family?</label>
+                <select id='q9' class='form-control'>
+                    <option value='1'>1 (Strongly Agree)</option>
+                    <option value='2'>2 </option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5 (Strongly Disagree)</option>
+                </select>
+            </div>
+            <br />
+            <div class='form-group'>
+                <label for='q10' class='lead'>What is Your Idea of a First Data</label>
+                <select id='q10' class='form-control'required>
+                    <option value='' selected disabled>Please Select</option>
+                    <option value='1'>A Nice Coffee Shop</option>
+                    <option value='2'>Walking Around in a Bookstore</option>
+                    <option value='3'>Dinner and Some Cocktails</option>
+                    <option value='4'>Meeting Up at a Fancy Bar</option>
+                    <option value='5'>A Concert!</option>
+                </select>
+            </div>
+            <br />
+
+            <button type="button" id="submit" class="btn  btn-lg btn-block" style="background-color:#7a0808; color:whitesmoke"data-toggle="modal" data-target="#modal"><i class="fa fa-check-square" aria-hidden="true">
+                
+            </i> Submit</button>
+        </form>
+        <br />
+        <footer class="footer">
+            <div class="container">
+                <p><a href="/api/friends" target='_blank'>API Friends List</a> </p>
+            </div>
+        </footer>
+    </div>
+    <div class="modal fade" id="modal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    // declare global variables
+    </script>
