@@ -20,11 +20,30 @@ module.exports = function(app) {
     // Then the server saves the data to the tableData array)
     // ---------------------------------------------------------------------------
   
-    app.post("/api/friends", function(req, res) {
-      // It will do this by sending out the value "true" have a table
-      // req.body is available since we're using the body parsing middleware
-      people.push(req.body)
-    });
+    app.post("/api/friends", function(req, res, compfunct) {
+      
+      people.push(req.body);
+      value1 = req.body.values;
+      friendCount= 0;
+      matches = 0;
+      var compatFriend = []
+      
+
+      for(i = 0; i < people.length; i ++){
+          var diffVal = 0
+          if(value1[0] == people[i].looking){
+            compatFriend.push(people[i])
+           }
+           for(x = 0; x < value1.length; x ++){
+             diffVal += (Math.abs(parseInt(people[i].scores[x] - parseInt(value1[x]))))
+           }
+          }
+      for(x = 0; x < compatFriend.length; x ++){
+
+      }
+      })
+
+  
   
     
 }

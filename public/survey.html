@@ -29,7 +29,7 @@
             <h2 style="color: #7a0808">Select how much you agree with the following statements.</h2>
             <div class="form-group">
                 <label for='q0' class='lead'>Who are You Interested in</label>
-                <select id='q1' class='form-control quest' required>
+                <select id='q0' class='form-control quest' required>
                     <option value='0' selected disabled>Please Select</option>
                     <option value='1'>Woman Seeking Man</option>
                     <option value='2'>Man Seeking Woman</option>
@@ -85,7 +85,7 @@
             <br />
             <div class='form-group'>
                 <label for='q5' class='lead'>Would You Describe Yourself as a Morning Person</label>
-                <select id='q4' class='form-control quest' required>
+                <select id='q5' class='form-control quest' required>
                     <option value='0' selected disabled>Please Seleect</option>
                     <option value='1'>1 (Strongly Disagree</option>
                     <option value='2'>2</option>
@@ -185,34 +185,35 @@
     <script type="text/javascript">
         $(document).ready(() => {
             $('#submit').on('click', () => {
-               
+
                 event.preventDefault();
-              
-                    validateForm = ()=>{
-                      validate1 = Boolean
-                         //validate1 = true
-                    if($('#name').val()==''||$('#image').val() === null){
+
+                validateForm = () => {
+                    validate1 = Boolean
+                    //validate1 = true
+                    if ($('#name').val() == '' || $('#image').val() === null) {
                         validate1 = false
                         console.log('namewrong')
-                        
+
                     }
-                    $('.quest').each(function(){
-                       
-                        if($(this).val()==null){
-                        validate1= false
-                        console.log('form wrong')
-                       // return validate1
-                      }
-                  //      else{validate1 = true}
+                    $('.quest').each(function () {
+
+                        if ($(this).val() == null) {
+                            validate1 = false
+                            console.log('form wrong')
+                            // return validate1
+                        }
+                        //      else{validate1 = true}
                     })
-                 return validate1
+                    return validate1
                 }
-                if (validateForm()){
+                if (validateForm()) {
                     newUser = {
                         name: $('#name').val().trim(),
                         profilePic: $('#image').val().trim(),
                         pref: $('#q0').val(),
-                        values:[
+                        values: [
+                            $('#q0').val(),
                             $('#q1').val(),
                             $('#q2').val(),
                             $('#q3').val(),
@@ -226,24 +227,25 @@
                         ]
                     }
                     var currentURL = window.location.origin;
-
-                    $.post(currentURL+ '/api/friends', newUser, (data)=>{
+                    window.location.replace('/match')
+                    $('#test').append('<div> <h1>Hello there</h1></div>')
+                    $.post(currentURL + '/api/friends', newUser, (data) => {
                         $("#matchName").text(data.name);
                         $("#matchPic").attr("src", data.profilePic);
                     })
-                    window.location.replace('/match')
-                }
-                else{alert('There are Incomplete Fields')}
-                    })
 
-                //   $('.lead').each(()=>{
-                  //     if ($(this).val()===''){
-                    //       validata = false
-                      // }
-                   //})
-                    
-                
-               
+                } else {
+                    alert('There are Incomplete Fields')
+                }
             })
-        
+
+            //   $('.lead').each(()=>{
+            //     if ($(this).val()===''){
+            //       validata = false
+            // }
+            //})
+
+
+
+        })
     </script>
