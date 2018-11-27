@@ -8,32 +8,35 @@
         crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
 </head>
 
-<body >
-    
+<body>
+
     <div class="container" style="background-color: #ce9f9f">
-       <h1 class = 'matches' style='color:#7a0808; display:none'>
+        <h1 class='matches' style='color:#7a0808; display:none'>
             You Have Match(es)!
         </h1>
-        <div class='row matches'  style='color:#7a0808; display:none' >
+        <div class='row matches' style='color:#7a0808; display:none'>
             <div class='col-lg-3'></div>
             <div class='col-lg-4'>
                 <h3 id='matchplace' style='color:#7a0808'>Matches:<br></h3>
-                <button type='button'class="btn btn-outline-secondary btn-lg reload" style: 'background-color:#64676b; color:#dee0e2'id='reload'>
+                <button type='button' class="btn btn-outline-secondary btn-lg reload" style:
+                    'background-color:#64676b; color:#dee0e2' id='reload'>
                     Try Again
                 </button>
             </div>
         </div>
-        <h1 class = 'form1' style='color:#7a0808'>Compatibility Survey</h1>
+        <h1 class='form1' style='color:#7a0808'>Compatibility Survey</h1>
         <hr>
-        <form class="form form1" >
+        <form class="form form1">
             <div class="form-group">
+                <!--Name and Image url fields-->
                 <label for="name">Name</label>
                 <input type="text" class="form-control required" id="name" required>
             </div>
@@ -42,6 +45,7 @@
                 <input type="text" class="form-control required" id="image" required>
             </div>
             <hr>
+            <!--The questions for the survey identified by the select id-->
             <h2 style="color: #7a0808">Select how much you agree with the following statements.</h2>
             <div class="form-group">
                 <label for='q0' class='lead'>Who are You Interested in</label>
@@ -51,7 +55,7 @@
                     <option value='2'>Man Seeking Woman</option>
                     <option value='3'>Man Seeking Man</option>
                     <option value='4'>Woman Seeking Woman</option>
-                    
+
                 </select>
                 <br>
                 <label for="q1" class="lead">You enjoy outdoor activities like hiking, camping, or swimming</label>
@@ -181,8 +185,8 @@
         <br />
         <footer class="footer">
             <div class="container">
-                    <a href='/api/friends'  class="btn btn-outline-danger">Api FriendList</a>
-                    <a href='https://github.com/maxwilets/friendFinder'  class="btn btn-outline-secondary">Github</a>
+                <a href='/api/friends' class="btn btn-outline-danger">Api FriendList</a>
+                <a href='https://github.com/maxwilets/friendFinder' class="btn btn-outline-secondary">Github</a>
             </div>
         </footer>
     </div>
@@ -192,76 +196,86 @@
     </div>
     </div>
 </body>
+
 </html>
 <script type='text/javascript'>
-$(document).ready(function() {
-    $('.reload').on('click', function(){
-                $('#matchplace').empty()
-                
-                $('.form1').show()
-                $('.matches').hide()
-            })
-    $('#submit').on('click', function() {
-        
+    $(document).ready(function () {
 
-        event.preventDefault();
+        //when matches are shown a reload button appears
+        //clicking on it will remove the matches and reload the survery
+        // the /survey page will show all of the functions
 
-        validateForm = () => {
-            validate1 = Boolean
+        $('.reload').on('click', function () {
+            $('#matchplace').empty()
 
-            if ($('#name').val() == '' || $('#image').val() === null) {
-                validate1 = false
+            $('.form1').show()
+            $('.matches').hide()
+        })
+        $('#submit').on('click', function () {
 
-            }
-            $('.quest').each(function () {
-
-                if ($(this).val() == null) {
+            event.preventDefault();
+            //function makes usre all the forms are filled by using a validate boolian
+            //if the boolean is false it will prompt that there are fields not complete
+            //if complete it will return true
+            validateForm = () => {
+                validate1 = Boolean
+                if ($('#name').val() == '' || $('#image').val() === null) {
                     validate1 = false
-                    
                 }
-            })
-            return validate1
-        }
-        if (validateForm()) {
-            newUser = {
-                name: $('#name').val().trim(),
-                profilePic: $('#image').val().trim(),
-                pref: $('#q0').val(),
-                values: [
-                    $('#q1').val(),
-                    $('#q2').val(),
-                    $('#q3').val(),
-                    $('#q4').val(),
-                    $('#q5').val(),
-                    $('#q6').val(),
-                    $('#q7').val(),
-                    $('#q8').val(),
-                    $('#q9').val(),
-                    $('#q10').val()
-                ]
+                $('.quest').each(function () {
+
+                    if ($(this).val() == null) {
+                        validate1 = false
+                   }
+                })
+                return validate1
             }
+            //if the validation was true it will make a user object using what the user submitted
+            if (validateForm()) {
+                newUser = {
+                    name: $('#name').val().trim(),
+                    profilePic: $('#image').val().trim(),
+                    pref: $('#q0').val(),
+                    values: [
+                        $('#q1').val(),
+                        $('#q2').val(),
+                        $('#q3').val(),
+                        $('#q4').val(),
+                        $('#q5').val(),
+                        $('#q6').val(),
+                        $('#q7').val(),
+                        $('#q8').val(),
+                        $('#q9').val(),
+                        $('#q10').val()
+                    ]
+                }
 
-            currentURL = window.location.origin
-            $('.form1').hide();
-            $('.matches').show()
-          
-           
-            $.post(currentURL + '/api/friends',newUser, function (match) {
+                currentURL = window.location.origin
+                //then it will hide the survey and show the matches
+                $('.form1').hide();
+                $('.matches').show()
 
-                 for(i= 0; i < match.length; i ++){
-                     $('#matchplace').append('<p style="background-color:#64676b;padding-left: 5px; border-radius:2.5%; color:#dee0e2">'+match[i].name+'</p> <p><img style="height: 350px; width:300px" src="'+ match[i].picture+'"></p>')
+                //AJAX request to the friendslist api
+                $.post(currentURL + '/api/friends', newUser, function (match) {
+                    //dynamically populates the data
+                    for (i = 0; i < match.length; i++) {
+                        $('#matchplace').append(
+                            '<p style="background-color:#64676b;padding-left: 5px; border-radius:2.5%; color:#dee0e2">' +
+                            match[i].name +
+                            '</p> <p><img style="height: 350px; width:300px" src="' + match[
+                                i].picture + '"></p>')
 
-                 }
-            })
+                    }
+                })
+                //clears the form for later
+                $('.form-control').each(function () {
+                    $(this).val('')
+                })
+            } else {
+                alert('There are Incomplete Fields')
+            }
+        })
 
-            $('.form-control').each(function(){
-                $(this).val('')
-            })
-        } else {
-            alert('There are Incomplete Fields')
-        }
+
     })
-
-
-})
 </script>
