@@ -1,5 +1,5 @@
 var path = require('path')
-var people = require('../app/data/friends')
+var people = require('../app/friends')
 module.exports = function (app) {
   // API GET Requests
   // Below code handles when users "visit" a page.
@@ -27,7 +27,8 @@ module.exports = function (app) {
     value1 = req.body.values;
     preference = parseInt(req.body.pref)
     friendCount = 0;
-    matches = 0;
+    matches = [];
+    match = []
     var compatFriend = [];
     var scores1 = []
 
@@ -60,14 +61,15 @@ module.exports = function (app) {
     }
     console.log(scores1)
     for(var i = 0; i < scores1.length; i ++){
-      if(scores1[i] <= 2){
-        matches = i
-        console.log(matches)
+      if(scores1[i] <= 10){
+        matches.push(i)
        // return matches
-      }
-
+        }
+  }
+    for(var i = 0; i < matches.length; i ++){
+      match.push(compatFriend[matches[i]])
     }
-    var match = compatFriend[matches]
+    
     
    console.log(match)
     res.json(match)
@@ -75,9 +77,5 @@ module.exports = function (app) {
 
    // return match
    // people.push(req.body)
-  })
-
-
-
-
-}
+  
+})}

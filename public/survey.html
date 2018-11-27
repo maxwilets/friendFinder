@@ -8,17 +8,31 @@
         crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
+     <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+
+
 </head>
 
 <body>
-    <div id='matchName'></div>
-    <div id='matchPic'></div>
+    
     <div class="container" style="background-color: #ce9f9f">
-        <h1 style='color:#7a0808'>Compatibility Survey</h1>
+       <h1 class = 'matches' style='color:#7a0808; display:none'>
+            You Have Match(es)!
+        </h1>
+        <div class='row matches'  style='color:#7a0808; display:none' >
+            <div class='col-lg-3'></div>
+            <div class='col-lg-4'>
+                <h3 id='matchplace' style='color:#7a0808'>Matches:</h3>
+                <button type='button'class="btn btn-outline-secondary btn-lg reload" style: 'background-color:#64676b; color:#dee0e2'id='reload'>
+                    Try Again
+                </button>
+            </div>
+        </div>
+        <h1 class = 'form1' style='color:#7a0808'>Compatibility Survey</h1>
         <hr>
-        <form class="form">
+        <form class="form form1" >
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control required" id="name" required>
@@ -175,76 +189,75 @@
     </div>
     </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(() => {
-                $('#submit').on('click', () => {
+</body>
+</html>
+<script type='text/javascript'>
+$(document).ready(function() {
+    $('.reload').on('click', function(){
+                
+                $('.form1').show()
+                $('.matches').hide()
+            })
+    $('#submit').on('click', function() {
 
-                    event.preventDefault();
+        event.preventDefault();
 
-                    validateForm = () => {
-                        validate1 = Boolean
+        validateForm = () => {
+            validate1 = Boolean
 
-                        if ($('#name').val() == '' || $('#image').val() === null) {
-                            validate1 = false
-
-                        }
-                        $('.quest').each(function () {
-
-                            if ($(this).val() == null) {
-                                validate1 = false
-                                console.log('form wrong')
-                            }
-                        })
-                        return validate1
-                    }
-                    if (validateForm()) {
-                        //  window.location.replace('/match')
-                        newUser = {
-                            name: $('#name').val().trim(),
-                            profilePic: $('#image').val().trim(),
-                            pref: $('#q0').val(),
-                            values: [
-
-                                $('#q1').val(),
-                                $('#q2').val(),
-                                $('#q3').val(),
-                                $('#q4').val(),
-                                $('#q5').val(),
-                                $('#q6').val(),
-                                $('#q7').val(),
-                                $('#q8').val(),
-                                $('#q9').val(),
-                                $('#q10').val()
-                            ]
-                        }
-                        currentURL = window.location.origin
-                       
-                        $.post(currentURL + '/api/friends',newUser, function (match) {
-                          //  window.location.replace('/match')
-                          //  window.location.replace('/match')
-                          //  dac = JSON.parse(match)
-                            console.log('testy')
-                         //   console.log(dac) 
-                            $('#matchName').text(match.name)
-                             
-                            
-
-                         //   $("#name").text(data.name);
-                         //   $("#pic").attr("src", data.picture);
-                          //  $("#name").load("match.html").text(data.name)
-
-                            
-                        })
-
-                    } else {
-                        alert('There are Incomplete Fields')
-                    }
-                })
-
+            if ($('#name').val() == '' || $('#image').val() === null) {
+                validate1 = false
 
             }
+            $('.quest').each(function () {
+
+                if ($(this).val() == null) {
+                    validate1 = false
+                    
+                }
+            })
+            return validate1
+        }
+        if (validateForm()) {
+            newUser = {
+                name: $('#name').val().trim(),
+                profilePic: $('#image').val().trim(),
+                pref: $('#q0').val(),
+                values: [
+                    $('#q1').val(),
+                    $('#q2').val(),
+                    $('#q3').val(),
+                    $('#q4').val(),
+                    $('#q5').val(),
+                    $('#q6').val(),
+                    $('#q7').val(),
+                    $('#q8').val(),
+                    $('#q9').val(),
+                    $('#q10').val()
+                ]
+            }
+
+            currentURL = window.location.origin
+            $('.form1').hide();
+            $('.matches').show()
+          
+           
+            $.post(currentURL + '/api/friends',newUser, function (match) {
+
+                 for(i= 0; i < match.length; i ++){
+                     $('#matchplace').append('<p style="background-color:#64676b;padding-left: 5px; border-radius:2.5%; color:#dee0e2">'+match[i].name+'</p> <p><img style="height: 350px; width:300px" src="'+ match[i].picture+'"></p>')
+
+                 }
+            })
+
+            $('.form-control').each(function(){
+                $(this).val('')
+            })
+        } else {
+            alert('There are Incomplete Fields')
+        }
+    })
 
 
-
-        )
-    </script>
+})
+</script>
