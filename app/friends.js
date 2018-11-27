@@ -1,3 +1,5 @@
+//data for all the friends in the app
+
 var people = [{
         name: 'Ciara',
         picture: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/ciara-cosmonovember2018-3-1539617052.png?crop=1xw:1xh;center,top&resize=480:*',

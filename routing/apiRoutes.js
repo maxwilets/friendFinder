@@ -2,24 +2,12 @@ var path = require('path')
 var people = require('../app/friends')
 module.exports = function (app) {
   // API GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases when a user visits a link
-  // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-  // ---------------------------------------------------------------------------
-
   app.get("/api/friends", function (req, res) {
     res.json(people);
   });
 
 
-  // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out a reservation request... this data is then sent to the server...
-  // Then the server saves the data to the tableData array)
-  // ---------------------------------------------------------------------------
-
+  // API POST Request
   app.post("/api/friends", function (req, res) {
     
    
@@ -31,7 +19,10 @@ module.exports = function (app) {
     var match = []
     var compatFriend = [];
     var scores1 = [];
- 
+
+     //this sorts out the people by what they are looking for
+     //if man seeking woman it will match with woman seeking man etc
+     //then puts them in an array compatFriend
     for (i = 0; i < people.length; i++) {
       
       if (preference === 1 &&  (people[i].looking === 2)) {
@@ -45,39 +36,36 @@ module.exports = function (app) {
       }
     
     }
-   // console.log(compatFriend)
-    
+    //compares the scores of the users' survey with the data
+    //2 loops: one goes through each friend the other goes through scores
+    // ex user q1 - data q1
+    //then for each person it pushes the score in an array
     for (i = 0; i < compatFriend.length; i++) {
       var diffVal = 0;
       for (x = 1; x < value1.length; x ++) {
         diffVal += (Math.abs(parseInt(compatFriend[i].scores[x]) - parseInt(value1[x])))
-       // console.log(compatFriend[i].scores[x])
-      //  console.log(diffVal)
-        
-        
+         
       }
       scores1.push(diffVal)
 
     }
-    console.log(scores1)
+    //finds chooses less than 8 if they are less than 8 
+    //puts them in a matches array 
     for(var i = 0; i < scores1.length; i ++){
-      if(scores1[i] <= 10){
+      if(scores1[i] <= 8){
         matches.push(i)
-       // return matches
-        }
-       // else{matches.push(0)}
+       
+        }     
   }
+  //if no matches are compatible it does the default
   if (matches.length === 0){
     matches.push(0)
   }
-  
+  //uses the matches as an idex to pull from the compatFriends array
   for(var i = 0; i < matches.length; i ++){
       match.push(compatFriend[matches[i]])
     }
-    
-    
-   console.log(match)
+  
     res.json(match)
    
-
 })}
