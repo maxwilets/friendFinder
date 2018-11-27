@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <div id='matchName'></div>
+    <div id='matchPic'></div>
     <div class="container" style="background-color: #ce9f9f">
         <h1 style='color:#7a0808'>Compatibility Survey</h1>
         <hr>
@@ -32,7 +34,7 @@
                 <select id='q0' class='form-control quest' required>
                     <option value='0' selected disabled>Please Select</option>
                     <option value='1'>Woman Seeking Man</option>
-                    <option value='1'>Man Seeking Woman</option>
+                    <option value='2'>Man Seeking Woman</option>
                     <option value='3'>Man Seeking Man</option>
                     <option value='4'>Woman Seeking Woman</option>
                     <option value='5'>Non-Binary</option>
@@ -168,75 +170,81 @@
             </div>
         </footer>
     </div>
-    
-                </div>
-            </div>
-        </div>
+
+    </div>
+    </div>
+    </div>
     </div>
     <script type="text/javascript">
         $(document).ready(() => {
-            $('#submit').on('click', () => {
+                $('#submit').on('click', () => {
 
-                event.preventDefault();
+                    event.preventDefault();
 
-                validateForm = () => {
-                    validate1 = Boolean
-                    //validate1 = true
-                    if ($('#name').val() == '' || $('#image').val() === null) {
-                        validate1 = false
-                        console.log('namewrong')
+                    validateForm = () => {
+                        validate1 = Boolean
 
-                    }
-                    $('.quest').each(function () {
-
-                        if ($(this).val() == null) {
+                        if ($('#name').val() == '' || $('#image').val() === null) {
                             validate1 = false
-                            console.log('form wrong')
-                            // return validate1
+
                         }
-                        //      else{validate1 = true}
-                    })
-                    return validate1
-                }
-                if (validateForm()) {
-                    newUser = {
-                        name: $('#name').val().trim(),
-                        profilePic: $('#image').val().trim(),
-                        pref: $('#q0').val(),
-                        values: [
-                            $('#q0').val(),
-                            $('#q1').val(),
-                            $('#q2').val(),
-                            $('#q3').val(),
-                            $('#q4').val(),
-                            $('#q5').val(),
-                            $('#q6').val(),
-                            $('#q7').val(),
-                            $('#q8').val(),
-                            $('#q9').val(),
-                            $('#q10').val()
-                        ]
+                        $('.quest').each(function () {
+
+                            if ($(this).val() == null) {
+                                validate1 = false
+                                console.log('form wrong')
+                            }
+                        })
+                        return validate1
                     }
-                    var currentURL = window.location.origin;
-                   window.location.replace('/match')
-                    $('#test').append('<div> <h1>Hello there</h1></div>')
-                    $.post(currentURL + '/api/friends', newUser, (data) => {
-                        $("#matchName").text(data.name);
-                        $("#matchPic").attr("src", data.profilePic);
-                    })
+                    if (validateForm()) {
+                        //  window.location.replace('/match')
+                        newUser = {
+                            name: $('#name').val().trim(),
+                            profilePic: $('#image').val().trim(),
+                            pref: $('#q0').val(),
+                            values: [
 
-                } else {
-                    alert('There are Incomplete Fields')
-                }
-            })
+                                $('#q1').val(),
+                                $('#q2').val(),
+                                $('#q3').val(),
+                                $('#q4').val(),
+                                $('#q5').val(),
+                                $('#q6').val(),
+                                $('#q7').val(),
+                                $('#q8').val(),
+                                $('#q9').val(),
+                                $('#q10').val()
+                            ]
+                        }
+                        currentURL = window.location.origin
+                       
+                        $.post(currentURL + '/api/friends',newUser, function (match) {
+                          //  window.location.replace('/match')
+                          //  window.location.replace('/match')
+                          //  dac = JSON.parse(match)
+                            console.log('testy')
+                         //   console.log(dac) 
+                            $('#matchName').text(match.name)
+                             
+                            
 
-            //   $('.lead').each(()=>{
-            //     if ($(this).val()===''){
-            //       validata = false
-            // }
-            //})
+                         //   $("#name").text(data.name);
+                         //   $("#pic").attr("src", data.picture);
+                          //  $("#name").load("match.html").text(data.name)
+
+                            
+                        })
+
+                    } else {
+                        alert('There are Incomplete Fields')
+                    }
+                })
+
+
+            }
 
 
 
-        })
+        )
     </script>

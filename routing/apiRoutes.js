@@ -20,41 +20,60 @@ module.exports = function (app) {
   // Then the server saves the data to the tableData array)
   // ---------------------------------------------------------------------------
 
-  app.post("/api/friends", function (req, res, compfunct) {
+  app.post("/api/friends", function (req, res) {
+    
 
     people.push(req.body);
     value1 = req.body.values;
+    preference = parseInt(req.body.pref)
     friendCount = 0;
     matches = 0;
     var compatFriend = [];
     var scores1 = []
 
-
-    for (i = people.length - 1; i > 0; i--) {
-      var diffVal = 0
-      if (value1[0] == people[i].looking) {
+    for (i = 0; i < people.length; i++) {
+      
+      if (preference === 1 &&  (people[i].looking === 2)) {
         compatFriend.push(people[i])
       }
-     
+      else if (preference ===2 && (people[i].looking ===1)){
+        compatFriend.push(people[i])
+      }
+      else if (preference === 4|| preference === 3 && people[i].looking === preference){
+        compatFriend.push(people[i])
+      }
+    
     }
+   // console.log(compatFriend)
+    
     for (i = 0; i < compatFriend.length; i++) {
       var diffVal = 0;
-      for (x = 0; x < value1.length; x ++) {
-        diffVal += (Math.abs(parseInt(compatFriend[i].scores[x] - parseInt(value1[x]))))
+      for (x = 1; x < value1.length; x ++) {
+        diffVal += (Math.abs(parseInt(compatFriend[i].scores[x]) - parseInt(value1[x])))
+       // console.log(compatFriend[i].scores[x])
+      //  console.log(diffVal)
+        
+        
       }
       scores1.push(diffVal)
 
     }
-
+    console.log(scores1)
     for(var i = 0; i < scores1.length; i ++){
-      if(scores1[i] <= 3){
+      if(scores1[i] <= 2){
         matches = i
-        return matches
+        console.log(matches)
+       // return matches
       }
 
     }
     var match = compatFriend[matches]
+    
+   console.log(match)
     res.json(match)
+   
+
+   // return match
    // people.push(req.body)
   })
 
