@@ -71,8 +71,8 @@ var people = [{
         ]
     },
     {
-        name: 'Chad',
-        picture: 'https://www.etonline.com/sites/default/files/styles/max_970x546/public/images/2016-06/1280_chad_johnson_SPL1294143_016.jpg?itok=8MwsTtR8',
+        name: 'Neil',
+        picture: 'https://thenypost.files.wordpress.com/2015/09/best-time-ever-with-neil-patrick-harris.jpg?quality=90&strip=all&w=618&h=410&crop=1',
         looking: 3,
         scores: [
             5, 3, 4, 2, 4, 5, 3, 1, 3, 3

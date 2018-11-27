@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin='anonymous'>
-    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>Friend Finder</title>
 </head>
+
 <body>
-   <h1>Welcome to Friend Finder the best place way to find friends</h1>
-   <a href='/survey'  class="btn btn-outline-secondary">Try it Out</a>
+    <div class='container'>
+        <div class="jumbotron" style='background-color:#ce9f9f'>
+            <h1 class="display-4"><i class="fab fa-hotjar"></i> Friend Finder</h1>
+            <p class="lead">Find a partner who wants what you want.</p>
+            <hr class="my-4">
+
+            <p class="lead">
+                <p>Take the Survey and Find a Match</p>
+                <a class="btn btn-danger btn-lg" href="/survey" role="button">Try It Out</a>
+            </p>
+            <div>
+                <a href='/api/friends' class="btn btn-outline-danger">Api FriendList</a>
+                <a href='https://github.com/maxwilets/friendFinder' class="btn btn-outline-secondary">Github</a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

@@ -8,14 +8,14 @@
         crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
-     <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
 
 
 </head>
 
-<body>
+<body >
     
     <div class="container" style="background-color: #ce9f9f">
        <h1 class = 'matches' style='color:#7a0808; display:none'>
@@ -24,7 +24,7 @@
         <div class='row matches'  style='color:#7a0808; display:none' >
             <div class='col-lg-3'></div>
             <div class='col-lg-4'>
-                <h3 id='matchplace' style='color:#7a0808'>Matches:</h3>
+                <h3 id='matchplace' style='color:#7a0808'>Matches:<br></h3>
                 <button type='button'class="btn btn-outline-secondary btn-lg reload" style: 'background-color:#64676b; color:#dee0e2'id='reload'>
                     Try Again
                 </button>
@@ -51,8 +51,9 @@
                     <option value='2'>Man Seeking Woman</option>
                     <option value='3'>Man Seeking Man</option>
                     <option value='4'>Woman Seeking Woman</option>
-                    <option value='5'>Non-Binary</option>
+                    
                 </select>
+                <br>
                 <label for="q1" class="lead">You enjoy outdoor activities like hiking, camping, or swimming</label>
                 <select id="q1" class="form-control quest" required>
                     <option value="0" selected disabled>Please select</option>
@@ -180,7 +181,8 @@
         <br />
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends" target='_blank'>API Friends List</a> </p>
+                    <a href='/api/friends'  class="btn btn-outline-danger">Api FriendList</a>
+                    <a href='https://github.com/maxwilets/friendFinder'  class="btn btn-outline-secondary">Github</a>
             </div>
         </footer>
     </div>
@@ -194,11 +196,13 @@
 <script type='text/javascript'>
 $(document).ready(function() {
     $('.reload').on('click', function(){
+                $('#matchplace').empty()
                 
                 $('.form1').show()
                 $('.matches').hide()
             })
     $('#submit').on('click', function() {
+        
 
         event.preventDefault();
 

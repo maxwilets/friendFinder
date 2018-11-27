@@ -22,16 +22,16 @@ module.exports = function (app) {
 
   app.post("/api/friends", function (req, res) {
     
-
+   
     people.push(req.body);
     value1 = req.body.values;
     preference = parseInt(req.body.pref)
     friendCount = 0;
-    matches = [];
-    match = []
+    var matches = [];
+    var match = []
     var compatFriend = [];
-    var scores1 = []
-
+    var scores1 = [];
+ 
     for (i = 0; i < people.length; i++) {
       
       if (preference === 1 &&  (people[i].looking === 2)) {
@@ -65,8 +65,13 @@ module.exports = function (app) {
         matches.push(i)
        // return matches
         }
+       // else{matches.push(0)}
   }
-    for(var i = 0; i < matches.length; i ++){
+  if (matches.length === 0){
+    matches.push(0)
+  }
+  
+  for(var i = 0; i < matches.length; i ++){
       match.push(compatFriend[matches[i]])
     }
     
@@ -75,7 +80,4 @@ module.exports = function (app) {
     res.json(match)
    
 
-   // return match
-   // people.push(req.body)
-  
 })}
